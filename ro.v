@@ -1,3 +1,5 @@
+`default_nettype none
+
 module ro #(SIZE = 3, DELAY = 2) (
   output wire signal);
 

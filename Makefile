@@ -1,6 +1,6 @@
 TARGET = simv
 
-SRC = *.v
+SRC = *.v *.sv
 
 VCSFLAGS = -debug_all +lint=all
 

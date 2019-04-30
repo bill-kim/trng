@@ -1,15 +1,13 @@
-`default_nettype none
+module ro #(parameter SIZE = 3, DELAY = 2) (
+  input wire reset,
+  output wire signal);
 
-module ro #(SIZE = 3, DELAY = 2) (
-  input logic reset,
-  output logic signal);
-
-	logic out[SIZE-1:0];
+	wire out[SIZE-1:0];
 
 	genvar i;
 	generate
-		for (i = 0; i < SIZE-1; i++) begin
-			not #(DELAY) (out[i+1], out[i]);
+		for (i = 0; i < SIZE-1; i=i+1) begin: ring_oscillator
+			not #(DELAY) n(out[i+1], out[i]);
 		end
 	endgenerate
 

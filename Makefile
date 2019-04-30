@@ -2,7 +2,7 @@ TARGET = simv
 
 SRC = *.sv
 
-VCSFLAGS = -sverilog
+VCSFLAGS = -sverilog -debug_all +lint=all
 
 SIM = vcs
 

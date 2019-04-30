@@ -1,4 +1,4 @@
-`include "params.svh"
+`include "params.vh"
 
 module ro_comb (
   output wire output_comb);

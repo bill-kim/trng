@@ -15,7 +15,7 @@ module ro_comb (
 
 		xor (xors[0], signals[0], signals[1]);
 		for (i = 0; i < `NUM_OF_RO-2; i = i + 1) begin: xor_gates
-			xor (xors[i+1], xors[i], signals[i+1]);
+			xor (xors[i+1], xors[i], signals[i+2]);
 		end
 	endgenerate
 

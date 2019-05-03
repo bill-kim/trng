@@ -1,9 +1,14 @@
 `default_nettype none
 
 module ro #(parameter SIZE = 3, DELAY = 2) (
-  output wire signal);
+  input wire enable,
+  input wire clock,
+  output reg signal);
 
 	wire out[SIZE-1:0];
+  wire init_val;
+
+  nor #(DELAY) (out[0], out[SIZE-1], enable);
 
 	genvar i;
 	generate
@@ -12,8 +17,8 @@ module ro #(parameter SIZE = 3, DELAY = 2) (
 		end
 	endgenerate
 
-	not #(DELAY) (out[0], out[SIZE-1]);
-
-	assign signal = out[SIZE-1];
+  always @(posedge clock) begin
+    signal <= out[SIZE-1];
+  end
 
 endmodule

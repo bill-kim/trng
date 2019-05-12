@@ -7,7 +7,7 @@ module ro_comb (
   output wire output_comb);
 
 	wire signals[`NUM_OF_RO-1:0];
-	reg [`NUM_OF_RO-1:0] xors[$clog2(`NUM_OF_RO):0];
+	reg [`NUM_OF_RO:0] xors[$clog2(`NUM_OF_RO):0];
 	
 	genvar i, j;
 	generate

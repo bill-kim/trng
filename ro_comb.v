@@ -7,7 +7,7 @@ module ro_comb (
   output wire output_comb);
 
 	wire signals[`NUM_OF_RO-1:0];
-	reg [`NUM_OF_RO:0] xors[$clog2(`NUM_OF_RO):0];
+	reg [`NUM_OF_RO-1:0] xors[$clog2(`NUM_OF_RO):0];
 	
 	genvar i, j;
 	generate
@@ -25,8 +25,10 @@ module ro_comb (
 		end
 	endgenerate
 
-  always @(posedge clock) begin
-    xors[0] <= signals;
+  always @(*) begin
+    for (int i = 0; i < `NUM_OF_RO; i++) begin
+      xors[0][i] = signals[i];
+    end
   end
 
   assign output_comb = xors[$clog2(`NUM_OF_RO)][0];  

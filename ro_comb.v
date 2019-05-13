@@ -8,7 +8,8 @@ module ro_comb (
 
 	wire signals[`NUM_OF_RO-1:0];
 	reg [`NUM_OF_RO-1:0] xors[$clog2(`NUM_OF_RO):0];
-	
+	integer k;
+
 	genvar i, j;
 	generate
 		for (i = 0; i < `NUM_OF_RO; i = i + 1) begin: ring_oscillators
@@ -25,9 +26,9 @@ module ro_comb (
 		end
 	endgenerate
 
-  always @(*) begin
-    for (int i = 0; i < `NUM_OF_RO; i++) begin
-      xors[0][i] = signals[i];
+  always @(posedge clock) begin
+    for (k = 0; k < `NUM_OF_RO; k = k + 1) begin
+      xors[0][k] <= signals[k];
     end
   end
 

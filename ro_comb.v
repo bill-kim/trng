@@ -13,7 +13,7 @@ module ro_comb (
 	genvar i, j;
 	generate
 		for (i = 0; i < `NUM_OF_RO; i = i + 1) begin: ring_oscillators
-			ro #(`NUM_OF_GATES, `GATE_DELAY) ring (enable, clock, signals[i]);
+			(* KEEP = "TRUE" *) ro #(`NUM_OF_GATES, `GATE_DELAY) ring (enable, clock, signals[i]);
 		end
 /*
 		for (i = 0; i < `LOG_NUM_OF_RO; i = i + 1) begin: layers

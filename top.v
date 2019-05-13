@@ -21,7 +21,7 @@ module top(clk_p, clk_n, cpu_reset);
     .LOCKED_OUT(locked));
    
   wire output_comb;
-  ro_comb rc(.enable(locked), .clock(clk100), .output_comb(output_comb));
+  ro_comb rc(.clock(clk100), .output_comb(output_comb));
   
   reg [`CLK100_QSIZE-1:0] clk100_mem;
   reg [`CLK100_QSIZE_LOG-1:0] clk100_index;  
@@ -63,8 +63,9 @@ module top(clk_p, clk_n, cpu_reset);
     end
   end*/
 
-  wire [35:0] ilactrlbus100, ilactrlbus200, ilactrlbus266, ilactrlbus400,
-              vioctrlbus100, vioctrlbus200, vioctrlbus266, vioctrlbus400; 
+  //wire [35:0] ilactrlbus100, ilactrlbus200, ilactrlbus266, ilactrlbus400,
+  //            vioctrlbus100, vioctrlbus200, vioctrlbus266, vioctrlbus400;
+  wire [35:0] ilactrlbus100, vioctrlbus100;  
   
   wire vio_op100, vio_op200, vio_op266, vio_op400;
   assign index_reset = vio_op100;// | vio_op200 | vio_op266 | vio_op400;

@@ -2,18 +2,16 @@
 `include "params.vh"
 
 module ro_comb (
-  input wire enable,
   input wire clock,
   output reg output_comb);
 
 	wire [`NUM_OF_RO-1:0] signals;
 	//reg [`NUM_OF_RO-1:0] xors[`LOG_NUM_OF_RO:0];
-	integer k;
 
 	genvar i, j;
 	generate
 		for (i = 0; i < `NUM_OF_RO; i = i + 1) begin: ring_oscillators
-			(* KEEP = "TRUE" *) ro #(`NUM_OF_GATES, `GATE_DELAY) ring (enable, clock, signals[i]);
+			(* KEEP = "TRUE" *) ro #(`NUM_OF_GATES, `GATE_DELAY) ring (clock, signals[i]);
 		end
 /*
 		for (i = 0; i < `LOG_NUM_OF_RO; i = i + 1) begin: layers

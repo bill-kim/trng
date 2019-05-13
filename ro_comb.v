@@ -7,7 +7,7 @@ module ro_comb (
   output wire output_comb);
 
 	wire signals[`NUM_OF_RO-1:0];
-	reg [`NUM_OF_RO-1:0] xors[$clog2(`NUM_OF_RO):0];
+	reg [`NUM_OF_RO-1:0] xors[`LOG_NUM_OF_RO:0];
 	integer k;
 
 	genvar i, j;
@@ -16,7 +16,7 @@ module ro_comb (
 			ro #(`NUM_OF_GATES, `GATE_DELAY) ring (enable, clock, signals[i]);
 		end
 
-		for (i = 0; i < $clog2(`NUM_OF_RO); i = i + 1) begin: layers
+		for (i = 0; i < `LOG_NUM_OF_RO; i = i + 1) begin: layers
 			for (j = 0; j < `NUM_OF_RO / 2**i; j = j + 2) begin: xor_gates
         always @(posedge clock) begin
           xors[i+1][j/2] <= xors[i][j] ^ xors[i][j + 1];
@@ -32,6 +32,6 @@ module ro_comb (
     end
   end
 
-  assign output_comb = xors[$clog2(`NUM_OF_RO)][0];  
+  assign output_comb = xors[`LOG_NUM_OF_RO][0];  
 
 endmodule

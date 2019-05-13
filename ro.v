@@ -12,12 +12,12 @@ module ro #(parameter SIZE = 3, DELAY = 2) (
 	wire out[SIZE-1:0];
   wire init_val;
 
-  nor #(DELAY) (out[0], out[SIZE-1], enable);
+  not #(DELAY) (out[0], out[SIZE-1]);
 
 	genvar i;
 	generate
 		for (i = 0; i < SIZE - 1; i = i + 1) begin: not_gates
-			nor #(DELAY) (out[i+1], out[i], enable);
+			not #(DELAY) (out[i+1], out[i]);
 		end
 	endgenerate
 

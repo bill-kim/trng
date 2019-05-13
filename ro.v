@@ -1,9 +1,13 @@
 `default_nettype none
 
+(* KEEP_HIERARCHY="TRUE" *)
+
 module ro #(parameter SIZE = 3, DELAY = 2) (
   input wire enable,
   input wire clock,
   output wire signal);
+
+  (* S = "TRUE" *)
 
 	wire out[SIZE-1:0];
   wire init_val;

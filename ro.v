@@ -17,7 +17,7 @@ module ro #(parameter SIZE = 3, DELAY = 2) (
 	genvar i;
 	generate
 		for (i = 0; i < SIZE - 1; i = i + 1) begin: not_gates
-			not #(DELAY) (out[i+1], out[i]);
+			nor #(DELAY) (out[i+1], out[i], enable);
 		end
 	endgenerate
 

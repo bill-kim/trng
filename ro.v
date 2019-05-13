@@ -5,7 +5,7 @@
 module ro #(parameter SIZE = 3, DELAY = 2) (
   input wire enable,
   input wire clock,
-  output wire signal);
+  output reg signal);
 
   (* S = "TRUE" *)
 
@@ -21,6 +21,8 @@ module ro #(parameter SIZE = 3, DELAY = 2) (
 		end
 	endgenerate
 
-  assign signal = out[SIZE-1];
+  always @(posedge clock) begin
+     signal <= out[SIZE-1];
+  end
 
 endmodule
